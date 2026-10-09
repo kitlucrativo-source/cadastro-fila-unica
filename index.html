@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#091b15">
+<meta name="description" content="Acesse a página de cadastro da Fila Única pelo navegador do seu celular.">
+<title>Cadastro | Fila Única</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0%,#15583b,#091b15 60%);color:#f3fff8;display:grid;place-items:center;padding:24px}
+main{max-width:440px;width:100%;background:#10261e;border:1px solid #2c5944;border-radius:22px;padding:30px 24px;box-shadow:0 20px 60px #0006;text-align:center}
+.logo{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:20px;background:#22c55e;color:#052313;font-size:32px;font-weight:900;margin-bottom:12px}
+h1{font-size:27px;margin:8px 0 10px}p{color:#d3e8dd;line-height:1.55} .tag{color:#86efac;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+button,.action{width:100%;display:block;border:0;border-radius:13px;background:#22c55e;color:#062714;padding:16px 12px;font-size:16px;font-weight:800;cursor:pointer;text-decoration:none;margin-top:16px}
+button.secondary{background:#214735;color:#f1fff6;border:1px solid #4a8b64}
+.notice{background:#203c2e;border:1px solid #4c8263;padding:16px;border-radius:12px;margin-top:20px;text-align:left}
+.notice strong{color:#fff}.notice ol{padding-left:22px;color:#d3e8dd;line-height:1.6;margin-bottom:0}
+small{color:#a9caba;display:block;margin-top:18px;line-height:1.5}
+#webviewNotice{display:none}#status{min-height:1.5em;color:#86efac}
+</style>
+</head>
+<body>
+<main>
+<div class="logo" aria-hidden="true">F</div>
+<div class="tag">Acesso ao cadastro</div>
+<h1>Fila Única</h1>
+<p>Para continuar, abra o cadastro em um navegador compatível, como o Google Chrome.</p>
+<div id="webviewNotice" class="notice" role="status">
+<strong>Você está no navegador do Facebook ou Instagram.</strong>
+<ol><li>Toque nos três pontinhos (⋮) do aplicativo.</li><li>Escolha <b>Abrir no navegador</b> ou <b>Abrir no Chrome</b>.</li><li>Se essa opção não aparecer, toque em <b>Copiar link</b> abaixo e cole no Chrome.</li></ol>
+</div>
+<a class="action" id="cadastro" href="https://app.filaunica.com/cadastro/?redirect=1&amp;id=ferpinha" rel="noopener noreferrer">Ir para o cadastro</a>
+<button type="button" class="secondary" id="copy">Copiar link do cadastro</button>
+<p id="status" aria-live="polite"></p>
+<small>Você será direcionado ao site externo Fila Única. Esta página não solicita senha nem coleta dados pessoais.</small>
+</main>
+<script>
+(function(){
+ const url='https://app.filaunica.com/cadastro/?redirect=1&id=ferpinha';
+ const agent=navigator.userAgent||'';
+ if(/FBAN|FBAV|FB_IAB|Instagram|\bFB4A\b/i.test(agent))document.getElementById('webviewNotice').style.display='block';
+ document.getElementById('copy').addEventListener('click',async()=>{
+  const status=document.getElementById('status');
+  try{
+   if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(url);status.textContent='Link copiado! Cole no Chrome.';}
+   else{throw new Error('clipboard indisponível')}
+  }catch(e){
+   const field=document.createElement('textarea');field.value=url;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();
+   const ok=document.execCommand('copy');field.remove();status.textContent=ok?'Link copiado! Cole no Chrome.':'Não foi possível copiar automaticamente. Pressione o link de cadastro para copiá-lo.';
+  }
+ });
+})();
+</script>
+</body>
+</html>
