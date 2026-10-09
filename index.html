@@ -37,7 +37,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;ba
 <header class="top"><div class="brand"><span class="brandmark">F</span><span>Fila Única</span></div><div class="safe">✓ Link de indicação</div></header>
 <main>
 <section class="hero" aria-labelledby="headline"><div class="orb" aria-hidden="true"><svg width="61" height="61" viewBox="0 0 64 64" fill="none"><rect x="13" y="19" width="38" height="29" rx="9" stroke="white" stroke-width="3"/><path d="M22 19v-4a10 10 0 0 1 20 0v4M25 34l5 5 10-12" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/></svg></div><div class="eyebrow">SEU ACESSO COMEÇA AQUI</div><h1>Continue para o<br><span>cadastro</span></h1><p class="intro">Acesse a página de cadastro pelo seu navegador preferido. Se você veio do Facebook, confira as instruções abaixo para evitar erros.</p></section>
-<section class="panel" aria-label="Acesso ao cadastro"><div class="panel-head"><div class="circle" aria-hidden="true">↗</div><div><h2>Pronto para continuar?</h2><p>Você será direcionado ao site de cadastro.</p></div></div><a id="go" class="btn primary" href="https://app.filaunica.com/cadastro/?redirect=1&amp;id=ferpinha" rel="noopener noreferrer">Ir para o cadastro <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button class="btn secondary" id="copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copiar link do cadastro</button><p class="mini">Seu código de indicação será preservado.</p><div class="status" id="fbwarning" role="status">Você parece estar no navegador interno do Facebook ou Instagram. Para evitar o erro de WebView, abra esta página pelo menu ⋮ em <strong>Abrir no navegador</strong>, ou copie o link e cole no Chrome.</div></section>
+<section class="panel" aria-label="Acesso ao cadastro"><div class="panel-head"><div class="circle" aria-hidden="true">↗</div><div><h2>Pronto para continuar?</h2><p>Você será direcionado ao site de cadastro.</p></div></div><a id="go" class="btn primary" href="https://app.filaunica.com/cadastro/?redirect=1&amp;id=ferpinha" rel="noopener noreferrer">Ir para o cadastro <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button class="btn secondary" id="copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copiar link do cadastro</button><p class="mini">Seu código de indicação será preservado.</p><div class="status" id="fbwarning" role="status">O navegador interno do Facebook ou Instagram pode bloquear o cadastro. <strong>O botão verde copia o endereço para você abrir no Chrome.</strong> Depois, abra o Chrome e cole o link na barra de endereços.</div></section>
 <section class="steps" aria-labelledby="stepsheading"><div class="steps-title" id="stepsheading">📱 Abrindo pelo Facebook? <span class="pill">LEIA AQUI</span></div><div class="step"><span class="num">1</span><div>Toque no menu de <strong>três pontinhos (⋮)</strong> do navegador dentro do Facebook.</div></div><div class="step"><span class="num">2</span><div>Escolha <strong>“Abrir no navegador externo”</strong> ou <strong>“Abrir no Chrome”</strong>, se disponível.</div></div><div class="step"><span class="num">3</span><div>Se não houver essa opção, toque em <strong>“Copiar link”</strong> acima e cole no Chrome.</div></div></section>
 </main><div class="divider"></div><footer>Página independente para facilitar o acesso a um link de indicação. Não é o site oficial da plataforma Fila Única e não solicita dados pessoais nem pagamentos.<br>Em caso de dúvidas sobre o cadastro, consulte o site de destino.</footer>
 </div>
@@ -45,12 +45,36 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;ba
 (function(){
 const url='https://app.filaunica.com/cadastro/?redirect=1&id=ferpinha';
 const ua=navigator.userAgent||'';
-if(/FBAN|FBAV|FB_IAB|Instagram|Messenger/i.test(ua)){document.getElementById('fbwarning').style.display='block';}
+const inApp=/FBAN|FBAV|FB_IAB|Instagram|Messenger|FB4A|FBIOS/i.test(ua);
+const warning=document.getElementById('fbwarning');
+const go=document.getElementById('go');
 const btn=document.getElementById('copy');
-btn.addEventListener('click',async()=>{
-try {if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(url)}else{const t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();if(!document.execCommand('copy'))throw Error('copy failed');t.remove()}btn.textContent='✓ Link copiado! Abra no Chrome';setTimeout(()=>btn.textContent='Copiar link do cadastro',3500)}
-catch(e){window.prompt('Copie este link e abra no Chrome:',url)}
-});
+async function copyLink(){
+  try{
+    if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(url)}
+    else{
+      const t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';
+      document.body.appendChild(t);t.focus();t.select();
+      if(!document.execCommand('copy'))throw new Error('Falha na cópia');
+      t.remove();
+    }
+    btn.textContent='✓ Link copiado! Abra no Chrome';
+    if(inApp){go.textContent='✓ Copiado! Cole no Chrome';}
+  }catch(err){
+    window.prompt('Copie este link e abra no Chrome:',url);
+  }
+}
+btn.addEventListener('click',copyLink);
+if(inApp){
+  warning.style.display='block';
+  go.textContent='Copiar endereço para abrir no Chrome';
+  go.removeAttribute('href');
+  go.setAttribute('role','button');
+  go.setAttribute('tabindex','0');
+  go.setAttribute('aria-label','Copiar link do cadastro para abrir no Chrome');
+  go.addEventListener('click',ev=>{ev.preventDefault();copyLink()});
+  go.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();copyLink()}});
+}
 })();
 </script>
 </body>
