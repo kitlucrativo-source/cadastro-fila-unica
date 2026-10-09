@@ -2,54 +2,38 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#091b15">
-<meta name="description" content="Acesse a página de cadastro da Fila Única pelo navegador do seu celular.">
-<title>Cadastro | Fila Única</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061c17">
+<meta name="description" content="Abra seu link de cadastro em um navegador compatível.">
+<title>Acesso ao cadastro • Fila Única</title>
 <style>
-:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0%,#15583b,#091b15 60%);color:#f3fff8;display:grid;place-items:center;padding:24px}
-main{max-width:440px;width:100%;background:#10261e;border:1px solid #2c5944;border-radius:22px;padding:30px 24px;box-shadow:0 20px 60px #0006;text-align:center}
-.logo{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:20px;background:#22c55e;color:#052313;font-size:32px;font-weight:900;margin-bottom:12px}
-h1{font-size:27px;margin:8px 0 10px}p{color:#d3e8dd;line-height:1.55} .tag{color:#86efac;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-button,.action{width:100%;display:block;border:0;border-radius:13px;background:#22c55e;color:#062714;padding:16px 12px;font-size:16px;font-weight:800;cursor:pointer;text-decoration:none;margin-top:16px}
-button.secondary{background:#214735;color:#f1fff6;border:1px solid #4a8b64}
-.notice{background:#203c2e;border:1px solid #4c8263;padding:16px;border-radius:12px;margin-top:20px;text-align:left}
-.notice strong{color:#fff}.notice ol{padding-left:22px;color:#d3e8dd;line-height:1.6;margin-bottom:0}
-small{color:#a9caba;display:block;margin-top:18px;line-height:1.5}
-#webviewNotice{display:none}#status{min-height:1.5em;color:#86efac}
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#f8fff9;background:#061c17}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse 85% 38% at 80% 0%,#1a7047aa,transparent 75%),radial-gradient(ellipse 85% 45% at -15% 70%,#0d4c38aa,transparent 70%),#061c17}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:linear-gradient(#ffffff16 1px,transparent 1px),linear-gradient(90deg,#ffffff16 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+.wrap{position:relative;max-width:510px;margin:auto;padding:21px 20px 32px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.4px}.brandmark{width:37px;height:37px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,#beffc9,#3ce48e);color:#073724;font-size:21px;box-shadow:0 7px 24px #17d57e55}.safe{font-size:11px;letter-spacing:.03em;border:1px solid #b0f3c33d;color:#c1e9ce;border-radius:100px;padding:8px 10px;background:#ffffff09}
+.hero{text-align:center;position:relative}.orb{width:112px;height:112px;display:grid;place-items:center;margin:0 auto 19px;position:relative;border-radius:32px;background:linear-gradient(135deg,#42e889,#14663d);box-shadow:0 20px 75px #22d9784f,inset 0 2px 2px #ffffff66;transform:rotate(-7deg)}.orb svg{transform:rotate(7deg)}.orb:after{content:"";position:absolute;inset:-12px;border:1px solid #9df0bb3d;border-radius:40px}.eyebrow{display:inline-block;color:#a0f3b9;font-weight:800;font-size:11px;letter-spacing:.19em;margin:7px 0 13px}h1{margin:0;color:white;font-weight:850;letter-spacing:-1.7px;font-size:clamp(35px,9vw,47px);line-height:1.08}h1 span{color:#80eea6}.intro{max-width:385px;margin:17px auto 0;color:#c1d7cb;font-size:15px;line-height:1.65}
+.panel{margin-top:29px;padding:22px;border-radius:25px;border:1px solid #96e5b53b;background:linear-gradient(145deg,#183c2ee8,#0d281fe8);box-shadow:0 17px 55px #0005,inset 0 1px #ffffff13}.panel-head{display:flex;gap:10px;align-items:center;margin-bottom:15px}.panel-head .circle{background:#a7ffc71c;border:1px solid #a7ffc73d;width:34px;height:34px;display:grid;place-items:center;border-radius:12px;color:#9bffc0}.panel-head h2{font-size:17px;margin:0;letter-spacing:-.3px}.panel-head p{font-size:12px;color:#a5c0b0;margin:3px 0 0}.btn{width:100%;display:flex;align-items:center;justify-content:center;gap:11px;min-height:55px;border:0;border-radius:15px;font-size:15px;font-weight:800;text-decoration:none;cursor:pointer;transition:transform .15s,filter .15s}.btn:active{transform:scale(.98)}.primary{background:linear-gradient(120deg,#adffba,#49e892);color:#093c26;box-shadow:0 8px 27px #26ed8960}.secondary{margin-top:10px;border:1px solid #86d3a251;background:#ffffff0c;color:#e5fff0}.btn svg{width:20px;height:20px}.mini{margin:13px 0 0;color:#a7c3b2;text-align:center;font-size:12px}.steps{margin-top:17px;padding:20px 19px;border:1px solid #abefc330;border-radius:21px;background:#ffffff08}.steps-title{display:flex;align-items:center;gap:9px;color:#edfff2;font-weight:750;font-size:14px;margin-bottom:14px}.steps-title .pill{border-radius:100px;background:#e7bc6540;color:#ffd98d;font-size:10px;padding:5px 8px}.step{display:flex;align-items:flex-start;gap:12px;margin:14px 0}.num{flex:none;width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:#b7ffd01b;border:1px solid #a3efb953;color:#a4ffc1;font-weight:800;font-size:12px}.step div:last-child{font-size:13px;line-height:1.6;color:#c9e0d2}.step strong{color:#fff}.status{margin-top:14px;border:1px solid #ffd98d55;color:#ffe6b0;background:#ffd98d12;padding:12px 14px;border-radius:13px;font-size:12px;line-height:1.5;display:none}footer{padding:26px 9px 0;text-align:center;color:#8ca99a;font-size:11px;line-height:1.65}footer a{color:#b3eac4}.divider{height:1px;background:#b3ffc51d;margin-top:25px}@media(min-width:700px){.wrap{padding-top:30px}.top{margin-bottom:42px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important}}
 </style>
 </head>
 <body>
+<div class="wrap">
+<header class="top"><div class="brand"><span class="brandmark">F</span><span>Fila Única</span></div><div class="safe">✓ Link de indicação</div></header>
 <main>
-<div class="logo" aria-hidden="true">F</div>
-<div class="tag">Acesso ao cadastro</div>
-<h1>Fila Única</h1>
-<p>Para continuar, abra o cadastro em um navegador compatível, como o Google Chrome.</p>
-<div id="webviewNotice" class="notice" role="status">
-<strong>Você está no navegador do Facebook ou Instagram.</strong>
-<ol><li>Toque nos três pontinhos (⋮) do aplicativo.</li><li>Escolha <b>Abrir no navegador</b> ou <b>Abrir no Chrome</b>.</li><li>Se essa opção não aparecer, toque em <b>Copiar link</b> abaixo e cole no Chrome.</li></ol>
+<section class="hero" aria-labelledby="headline"><div class="orb" aria-hidden="true"><svg width="61" height="61" viewBox="0 0 64 64" fill="none"><rect x="13" y="19" width="38" height="29" rx="9" stroke="white" stroke-width="3"/><path d="M22 19v-4a10 10 0 0 1 20 0v4M25 34l5 5 10-12" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/></svg></div><div class="eyebrow">SEU ACESSO COMEÇA AQUI</div><h1>Continue para o<br><span>cadastro</span></h1><p class="intro">Acesse a página de cadastro pelo seu navegador preferido. Se você veio do Facebook, confira as instruções abaixo para evitar erros.</p></section>
+<section class="panel" aria-label="Acesso ao cadastro"><div class="panel-head"><div class="circle" aria-hidden="true">↗</div><div><h2>Pronto para continuar?</h2><p>Você será direcionado ao site de cadastro.</p></div></div><a id="go" class="btn primary" href="https://app.filaunica.com/cadastro/?redirect=1&amp;id=ferpinha" rel="noopener noreferrer">Ir para o cadastro <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a><button class="btn secondary" id="copy" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg> Copiar link do cadastro</button><p class="mini">Seu código de indicação será preservado.</p><div class="status" id="fbwarning" role="status">Você parece estar no navegador interno do Facebook ou Instagram. Para evitar o erro de WebView, abra esta página pelo menu ⋮ em <strong>Abrir no navegador</strong>, ou copie o link e cole no Chrome.</div></section>
+<section class="steps" aria-labelledby="stepsheading"><div class="steps-title" id="stepsheading">📱 Abrindo pelo Facebook? <span class="pill">LEIA AQUI</span></div><div class="step"><span class="num">1</span><div>Toque no menu de <strong>três pontinhos (⋮)</strong> do navegador dentro do Facebook.</div></div><div class="step"><span class="num">2</span><div>Escolha <strong>“Abrir no navegador externo”</strong> ou <strong>“Abrir no Chrome”</strong>, se disponível.</div></div><div class="step"><span class="num">3</span><div>Se não houver essa opção, toque em <strong>“Copiar link”</strong> acima e cole no Chrome.</div></div></section>
+</main><div class="divider"></div><footer>Página independente para facilitar o acesso a um link de indicação. Não é o site oficial da plataforma Fila Única e não solicita dados pessoais nem pagamentos.<br>Em caso de dúvidas sobre o cadastro, consulte o site de destino.</footer>
 </div>
-<a class="action" id="cadastro" href="https://app.filaunica.com/cadastro/?redirect=1&amp;id=ferpinha" rel="noopener noreferrer">Ir para o cadastro</a>
-<button type="button" class="secondary" id="copy">Copiar link do cadastro</button>
-<p id="status" aria-live="polite"></p>
-<small>Você será direcionado ao site externo Fila Única. Esta página não solicita senha nem coleta dados pessoais.</small>
-</main>
 <script>
 (function(){
- const url='https://app.filaunica.com/cadastro/?redirect=1&id=ferpinha';
- const agent=navigator.userAgent||'';
- if(/FBAN|FBAV|FB_IAB|Instagram|\bFB4A\b/i.test(agent))document.getElementById('webviewNotice').style.display='block';
- document.getElementById('copy').addEventListener('click',async()=>{
-  const status=document.getElementById('status');
-  try{
-   if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(url);status.textContent='Link copiado! Cole no Chrome.';}
-   else{throw new Error('clipboard indisponível')}
-  }catch(e){
-   const field=document.createElement('textarea');field.value=url;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();
-   const ok=document.execCommand('copy');field.remove();status.textContent=ok?'Link copiado! Cole no Chrome.':'Não foi possível copiar automaticamente. Pressione o link de cadastro para copiá-lo.';
-  }
- });
+const url='https://app.filaunica.com/cadastro/?redirect=1&id=ferpinha';
+const ua=navigator.userAgent||'';
+if(/FBAN|FBAV|FB_IAB|Instagram|Messenger/i.test(ua)){document.getElementById('fbwarning').style.display='block';}
+const btn=document.getElementById('copy');
+btn.addEventListener('click',async()=>{
+try {if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(url)}else{const t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();if(!document.execCommand('copy'))throw Error('copy failed');t.remove()}btn.textContent='✓ Link copiado! Abra no Chrome';setTimeout(()=>btn.textContent='Copiar link do cadastro',3500)}
+catch(e){window.prompt('Copie este link e abra no Chrome:',url)}
+});
 })();
 </script>
 </body>
